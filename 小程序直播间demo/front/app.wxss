@@ -1,0 +1,15 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding: 200rpx 20rpx;
+  box-sizing: border-box;
+}
+page{
+
+  background:url(http://avc.qcloud.com/demo/webim/biggroup/mobile/img/back-img2.png);
+  background-size:100%;
+}
