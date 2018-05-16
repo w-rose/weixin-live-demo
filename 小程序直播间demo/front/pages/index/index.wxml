@@ -1,13 +1,33 @@
 <!--index.wxml-->
 <view class="container">
   <view class="msgs-wrapper">
-    <view class="msgs" wx:for="{{msgs}}">
+    <view class="msgs" wx:for="{{msgs}}" wx:key="{{index}}">
       <text class="msg-item"><text class="nickname">{{item.fromAccountNick}}</text> : {{item.content}}</text>
     </view>
   </view>
 
   <view class="input-section">
-      <input value="{{msgContent}}"  placeholder="" bindconfirm="bindConfirm" />
+      <input value="{{msgContent}}"  placeholder="" bindconfirm="bindConfirm" bindfocus="bindFocus"/>
       <button class="love" bindtap="bindTap"></button>
+  </view>
+
+  <view class="login-modal" wx:if="{{loginShow}}">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+
+      <view class="section">
+        <text class="section__title">username</text>
+        <input class="login-input" name="username" placeholder="identifier" />
+      </view>
+
+      <view class="section">
+        <text class="section__title">password</text>
+        <input class="login-input" name="password" placeholder="userSig" />
+      </view>
+      
+      <view class="btn-area">
+        <button class="form-button" formType="submit">Submit</button>
+        <button class="form-button" formType="reset">Reset</button>
+      </view>
+    </form>
   </view>
 </view>

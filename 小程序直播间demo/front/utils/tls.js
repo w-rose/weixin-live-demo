@@ -1,26 +1,22 @@
 var encrypt = require('encrypt.js');
+var http = require('../common/http.js')
 
-var sdkappid = 10001;
-function anologin(cb){
-      wx.request({
-            url: 'https://tls.qcloud.com/anologin', //仅为示例，并非真实的接口地址
-            data: {
-                "passwd": encrypt.getRSAH1(),
-                "url": 'https://tls.qcloud.com/demo.html',
-                "sdkappid": sdkappid
-            },
-            method: 'GET',
-            header: {
-                // 'content-type': 'application/json'
-            },
+var identifier = 'yezi'
+
+var sdkappid = 1400067783;
+// 获取identifier和TmpSig
+function anologin(data, cb){
+      http.api({
+            url: 'login', //仅为示例，并非真实的接口地址
+            data: data,
+            method: 'post',
             success: function(res) {
-                var matches = res.data.match(/tlsAnoLogin\((.*?)\)/);
-                var params = JSON.parse(matches[1]);
-                login({
-                    TmpSig : params.TmpSig,
-                    Identifier: params.Identifier,
-                    success : cb
+              if (res.data.code === 0) {
+                cb({
+                  Identifier: res.data.identifier,
+                  UserSig: res.data.sig
                 })
+              }                
             }
         });
 }

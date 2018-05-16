@@ -90,10 +90,12 @@ function sdkLogin(userInfo, listeners, options,avChatRoomId) {
             webim.Log.info('webim登录成功');
             loginInfo = userInfo;
             setProfilePortrait({
-                'ProfileItem': [{
+                'ProfileItem': [
+                  {
                     "Tag": "Tag_Profile_IM_Nick",
                     "Value": userInfo.identifierNick
-                }]
+                  }
+                ]
             },function(){
                 applyJoinBigGroup(avChatRoomId);//加入大群
             })
